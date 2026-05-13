@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Piston Rod Portal</title>
+
+<style>
+
+body{
+font-family: Arial;
+padding:20px;
+}
+
+input{
+padding:10px;
+width:300px;
+}
+
+button{
+padding:10px;
+}
+
+table{
+border-collapse: collapse;
+width:100%;
+margin-top:20px;
+}
+
+table, th, td{
+border:1px solid black;
+padding:8px;
+font-size:14px;
+}
+
+th{
+background:#ddd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Piston Rod Search Portal</h1>
+
+<form method="POST">
+
+<input type="text" name="search" placeholder="Search Part No / Application">
+
+<button type="submit">Search</button>
+
+</form>
+
+<table>
+
+{% if results %}
+
+<tr>
+
+<th>Sr No</th>
+<th>Part No</th>
+<th>Rev Date</th>
+<th>Application</th>
+<th>Total Length</th>
+<th>Plating Length</th>
+<th>Chrome Before</th>
+<th>Chrome After</th>
+<th>Nickel</th>
+<th>Piston End</th>
+<th>Plant</th>
+<th>Identification</th>
+
+</tr>
+
+{% for row in results %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>{{ row[3] }}</td>
+<td>{{ row[4] }}</td>
+<td>{{ row[5] }}</td>
+<td>{{ row[6] }}</td>
+<td>{{ row[7] }}</td>
+<td>{{ row[8] }}</td>
+<td>{{ row[9] }}</td>
+<td>{{ row[10] }}</td>
+<td>{{ row[11] }}</td>
+
+</tr>
+
+{% endfor %}
+
+{% endif %}
+
+</table>
+
+</body>
+
+</html>
