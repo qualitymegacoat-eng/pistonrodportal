@@ -1,539 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Megacoat Piston Rod Portal</title>
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            font-family: Arial, sans-serif;
-            background:#eef2f7;
-            transition:0.3s;
-        }
-
-        /* DARK MODE */
-
-        .dark-mode{
-            background:#121212 !important;
-            color:white !important;
-        }
-
-        .dark-mode .search-box,
-        .dark-mode table,
-        .dark-mode .footer{
-            background:#1f1f1f !important;
-            color:white !important;
-        }
-
-        .dark-mode td{
-            color:white;
-            border-color:#444;
-        }
-
-        .dark-mode input{
-            background:#2b2b2b;
-            color:white;
-            border:1px solid #555;
-        }
-
-        .dark-mode tr:nth-child(even){
-            background:#2a2a2a;
-        }
-
-        .dark-mode tr:hover{
-            background:#333;
-        }
-
-        /* HEADER */
-
-        .header{
-            background:linear-gradient(135deg,#002244,#004080);
-            color:white;
-            text-align:center;
-            padding:30px 20px;
-            box-shadow:0 4px 12px rgba(0,0,0,0.2);
-            position:relative;
-        }
-
-        .header img{
-            width:100px;
-            height:100px;
-            background:white;
-            border-radius:15px;
-            padding:8px;
-            margin-bottom:15px;
-            box-shadow:0 0 15px rgba(255,255,255,0.3);
-        }
-
-        .header h1{
-            font-size:40px;
-            letter-spacing:1px;
-            margin-bottom:8px;
-        }
-
-        .header p{
-            font-size:18px;
-            opacity:0.9;
-        }
-
-        /* BUTTONS */
-
-        .dark-btn{
-            position:absolute;
-            right:30px;
-            top:30px;
-            padding:10px 18px;
-            border:none;
-            border-radius:8px;
-            background:white;
-            color:#003366;
-            font-weight:bold;
-            cursor:pointer;
-            transition:0.3s;
-        }
-
-        .dark-btn:hover{
-            transform:scale(1.05);
-        }
-
-        .add-part-btn{
-            position:absolute;
-            right:30px;
-            top:85px;
-            padding:10px 18px;
-            border:none;
-            border-radius:8px;
-            background:#13b84f;
-            color:white;
-            font-weight:bold;
-            cursor:pointer;
-            transition:0.3s;
-            text-decoration:none;
-        }
-
-        .add-part-btn:hover{
-            background:#0f9a41;
-            transform:scale(1.05);
-        }
-
-        /* CONTAINER */
-
-        .container{
-            width:95%;
-            margin:auto;
-            margin-top:30px;
-        }
-
-        /* SEARCH BOX */
-
-        .search-box{
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
-            text-align:center;
-            margin-bottom:25px;
-        }
-
-        .search-title{
-            font-size:24px;
-            color:#003366;
-            margin-bottom:20px;
-            font-weight:bold;
-        }
-
-        input{
-            width:45%;
-            padding:15px;
-            border:2px solid #d0d7e2;
-            border-radius:10px;
-            font-size:16px;
-            transition:0.3s;
-        }
-
-        input:focus{
-            outline:none;
-            border-color:#004080;
-            box-shadow:0 0 8px rgba(0,64,128,0.3);
-        }
-
-        button{
-            padding:15px 28px;
-            background:linear-gradient(135deg,#003366,#0055aa);
-            color:white;
-            border:none;
-            border-radius:10px;
-            font-size:16px;
-            cursor:pointer;
-            margin-left:10px;
-            transition:0.3s;
-            font-weight:bold;
-        }
-
-        button:hover{
-            transform:translateY(-2px);
-            background:linear-gradient(135deg,#0055aa,#0077dd);
-        }
-
-        /* TABLE */
-
-        .table-container{
-            overflow-x:auto;
-            border-radius:15px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        table{
-            width:100%;
-            border-collapse:collapse;
-            background:white;
-        }
-
-        th{
-            background:linear-gradient(135deg,#003366,#0055aa);
-            color:white;
-            padding:15px;
-            font-size:14px;
-            position:sticky;
-            top:0;
-        }
-
-        td{
-            padding:12px;
-            font-size:13px;
-            text-align:center;
-            border-bottom:1px solid #ddd;
-        }
-
-        tr:nth-child(even){
-            background:#f7f9fc;
-        }
-
-        tr:hover{
-            background:#eaf3ff;
-            transition:0.2s;
-        }
-
-        /* ACTION BUTTONS */
-
-        .drawing-btn{
-            background:linear-gradient(135deg,#0b8f3a,#13b84f);
-            color:white;
-            padding:8px 14px;
-            text-decoration:none;
-            border-radius:8px;
-            font-size:13px;
-            font-weight:bold;
-            transition:0.3s;
-            display:inline-block;
-            margin-bottom:5px;
-        }
-
-        .drawing-btn:hover{
-            background:#19d65d;
-        }
-
-        .edit-btn{
-            background:#ffaa00;
-            color:white;
-            padding:6px 10px;
-            text-decoration:none;
-            border-radius:6px;
-            display:inline-block;
-            margin-bottom:5px;
-        }
-
-        .delete-btn{
-            background:red;
-            color:white;
-            padding:6px 10px;
-            text-decoration:none;
-            border-radius:6px;
-            display:inline-block;
-        }
-
-        /* FOOTER */
-
-        .footer{
-            margin-top:30px;
-            background:white;
-            text-align:center;
-            padding:25px;
-            box-shadow:0 -2px 10px rgba(0,0,0,0.05);
-        }
-
-        .footer h3{
-            color:#003366;
-            margin-bottom:10px;
-        }
-
-        .developer-name{
-            font-size:18px;
-            font-weight:bold;
-            color:#0055aa;
-        }
-
-        /* MOBILE */
-
-        @media(max-width:768px){
-
-            input{
-                width:100%;
-                margin-bottom:15px;
-            }
-
-            button{
-                width:100%;
-                margin-left:0;
-            }
-
-            .header h1{
-                font-size:28px;
-            }
-
-            .search-title{
-                font-size:20px;
-            }
-
-            .dark-btn{
-                position:static;
-                margin-bottom:10px;
-            }
-
-            .add-part-btn{
-                position:static;
-                display:inline-block;
-                margin-top:10px;
-            }
-        }
-
-    </style>
-
-</head>
-
-<body>
-
-    <!-- HEADER -->
-
-    <div class="header">
-
-        <!-- DARK MODE BUTTON -->
-
-        <button class="dark-btn" onclick="toggleDarkMode()">
-
-            🌙 Dark Mode
-
-        </button>
-
-        <!-- LOGIN BASED BUTTONS -->
-
-        {% if logged_in %}
-
-        <a href="/add"
-           class="add-part-btn">
-
-            + Add Part
-
-        </a>
-
-        <a href="/logout"
-           class="add-part-btn"
-           style="top:140px; background:red;">
-
-            Logout
-
-        </a>
-
-        {% else %}
-
-        <a href="/login"
-           class="add-part-btn"
-           style="background:#0055aa;">
-
-            Admin Login
-
-        </a>
-
-        {% endif %}
-
-        <!-- LOGO -->
-
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
-
-        <h1>Megacoat Surface Treatments LLP</h1>
-
-        <p>Piston Rod Search Portal</p>
-
-    </div>
-
-    <!-- MAIN -->
-
-    <div class="container">
-
-        <!-- SEARCH -->
-
-        <div class="search-box">
-
-            <div class="search-title">
-
-                Search Piston Rod Details
-
-            </div>
-
-            <form method="POST">
-
-                <input type="text"
-                       name="search"
-                       placeholder="Enter Part No / Application / Plant"
-                       required>
-
-                <button type="submit">
-
-                    Search
-
-                </button>
-
-            </form>
-
-        </div>
-
-        <!-- TABLE -->
-
-        {% if results %}
-
-        <div class="table-container">
-
-        <table>
-
-            <tr>
-
-                <th>Sr No</th>
-                <th>Part No</th>
-                <th>Rev Date</th>
-                <th>Application</th>
-                <th>Total Length</th>
-                <th>Plating Length</th>
-                <th>Chrome Before</th>
-                <th>Chrome After</th>
-                <th>Nickel</th>
-                <th>Piston End</th>
-                <th>Plant</th>
-                <th>Identification</th>
-                <th>Actions</th>
-
-            </tr>
-
-            {% for row in results %}
-
-            <tr>
-
-                <td>{{ row[0] }}</td>
-                <td><b>{{ row[1] }}</b></td>
-                <td>{{ row[2] }}</td>
-                <td>{{ row[3] }}</td>
-                <td>{{ row[4] }}</td>
-                <td>{{ row[5] }}</td>
-                <td>{{ row[6] }}</td>
-                <td>{{ row[7] }}</td>
-                <td>{{ row[8] }}</td>
-                <td>{{ row[9] }}</td>
-                <td>{{ row[10] }}</td>
-                <td>{{ row[11] }}</td>
-
-                <td>
-
-                    <!-- DRAWING -->
-
-                    <a class="drawing-btn"
-                       href="/static/drawings/{{ row[1] }}.jpg"
-                       target="_blank">
-
-                       View Drawing
-
-                    </a>
-
-                    {% if logged_in %}
-
-                    <br>
-
-                    <!-- EDIT -->
-
-                    <a class="edit-btn"
-                       href="/edit/{{ row[1] }}">
-
-                       Edit
-
-                    </a>
-
-                    <br>
-
-                    <!-- DELETE -->
-
-                    <a class="delete-btn"
-                       href="/delete/{{ row[1] }}"
-                       onclick="return confirm('Delete this part?')">
-
-                       Delete
-
-                    </a>
-
-                    {% endif %}
-
-                </td>
-
-            </tr>
-
-            {% endfor %}
-
-        </table>
-
-        </div>
-
-        {% endif %}
-
-    </div>
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        <h3>
-
-            Developed for Megacoat Surface Treatments LLP
-
-        </h3>
-
-        <div class="developer-name">
-
-            Developed By - Mr. Suyash Thorat
-
-        </div>
-
-    </div>
-
-    <!-- DARK MODE SCRIPT -->
-
-    <script>
-
-        function toggleDarkMode(){
-
-            document.body.classList.toggle("dark-mode");
-
-        }
-
-    </script>
-
-</body>
-
-</html>
+from flask import Flask, render_template, request, redirect, session
+import pandas as pd
+import os
+
+app = Flask(__name__)
+app.secret_key = "megacoat123"
+
+USERNAME = "admin"
+PASSWORD = "1234"
+
+EXCEL_FILE = "rods.xlsx"
+
+def load_data():
+    if os.path.exists(EXCEL_FILE):
+        df = pd.read_excel(EXCEL_FILE)
+        df = df.fillna("")
+        return df
+    return pd.DataFrame()
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    df = load_data()
+    results = []
+
+    if request.method == "POST":
+        search = request.form["search"]
+
+        results = df[
+            df.astype(str)
+            .apply(lambda row: row.str.contains(search, case=False, na=False).any(), axis=1)
+        ].values.tolist()
+
+    return render_template(
+        "index.html",
+        results=results,
+        logged_in=session.get("logged_in")
+    )
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = ""
+
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if username == USERNAME and password == PASSWORD:
+            session["logged_in"] = True
+            return redirect("/")
+        else:
+            error = "Invalid Username or Password"
+
+    return render_template("login.html", error=error)
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
+
+@app.route("/add")
+def add():
+    if not session.get("logged_in"):
+        return redirect("/login")
+    return "Add/Edit/Delete is temporarily disabled because Excel is the main data source."
+
+if __name__ == "__main__":
+    app.run(debug=True)
