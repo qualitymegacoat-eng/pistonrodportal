@@ -61,30 +61,56 @@
             background:linear-gradient(135deg,#002244,#004080);
             color:white;
             text-align:center;
-            padding:30px 20px;
+            padding:40px 20px;
             box-shadow:0 4px 12px rgba(0,0,0,0.2);
             position:relative;
+            overflow:hidden;
         }
 
-        .header img{
-            width:100px;
-            height:100px;
+        /* BIG CORNER LOGO */
+
+        .corner-logo{
+
+            position:absolute;
+            left:30px;
+            top:25px;
+
+            width:140px;
+            height:140px;
+
             background:white;
-            border-radius:15px;
-            padding:8px;
-            margin-bottom:15px;
-            box-shadow:0 0 15px rgba(255,255,255,0.3);
+            border-radius:20px;
+            padding:10px;
+
+            box-shadow:0 0 20px rgba(255,255,255,0.4);
+
+            object-fit:contain;
+
         }
 
         .header h1{
-            font-size:40px;
+            font-size:42px;
             letter-spacing:1px;
-            margin-bottom:8px;
+            margin-bottom:10px;
+        }
+
+        /* SLOGAN */
+
+        .slogan{
+
+            font-size:38px;
+            font-weight:bold;
+            color:#ffd700;
+            margin-top:10px;
+            margin-bottom:10px;
+            letter-spacing:2px;
+            text-shadow:2px 2px 10px rgba(0,0,0,0.4);
+
         }
 
         .header p{
-            font-size:18px;
-            opacity:0.9;
+            font-size:20px;
+            opacity:0.95;
         }
 
         /* BUTTONS */
@@ -139,15 +165,15 @@
 
         .search-box{
             background:white;
-            padding:30px;
-            border-radius:15px;
+            padding:35px;
+            border-radius:18px;
             box-shadow:0 5px 15px rgba(0,0,0,0.1);
             text-align:center;
             margin-bottom:25px;
         }
 
         .search-title{
-            font-size:24px;
+            font-size:28px;
             color:#003366;
             margin-bottom:20px;
             font-weight:bold;
@@ -288,6 +314,13 @@
 
         @media(max-width:768px){
 
+            .corner-logo{
+                position:static;
+                width:100px;
+                height:100px;
+                margin-bottom:15px;
+            }
+
             input{
                 width:100%;
                 margin-bottom:15px;
@@ -300,6 +333,10 @@
 
             .header h1{
                 font-size:28px;
+            }
+
+            .slogan{
+                font-size:24px;
             }
 
             .search-title{
@@ -328,6 +365,12 @@
 
     <div class="header">
 
+        <!-- BIG CORNER LOGO -->
+
+        <img class="corner-logo"
+             src="{{ url_for('static', filename='logo.png') }}"
+             alt="Company Logo">
+
         <!-- DARK MODE BUTTON -->
 
         <button class="dark-btn" onclick="toggleDarkMode()">
@@ -336,7 +379,7 @@
 
         </button>
 
-        <!-- LOGIN BASED BUTTONS -->
+        <!-- LOGIN / ADD BUTTON -->
 
         {% if logged_in %}
 
@@ -367,13 +410,23 @@
 
         {% endif %}
 
-        <!-- LOGO -->
-
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
+        <!-- COMPANY NAME -->
 
         <h1>Megacoat Surface Treatments LLP</h1>
 
-        <p>Piston Rod Search Portal</p>
+        <!-- SLOGAN -->
+
+        <h2 class="slogan">
+
+            Beyond Known Frontiers
+
+        </h2>
+
+        <p>
+
+            Piston Rod Search Portal
+
+        </p>
 
     </div>
 
@@ -453,8 +506,6 @@
 
                 <td>
 
-                    <!-- DRAWING -->
-
                     <a class="drawing-btn"
                        href="/static/drawings/{{ row[1] }}.jpg"
                        target="_blank">
@@ -467,8 +518,6 @@
 
                     <br>
 
-                    <!-- EDIT -->
-
                     <a class="edit-btn"
                        href="/edit/{{ row[1] }}">
 
@@ -477,8 +526,6 @@
                     </a>
 
                     <br>
-
-                    <!-- DELETE -->
 
                     <a class="delete-btn"
                        href="/delete/{{ row[1] }}"
@@ -522,7 +569,7 @@
 
     </div>
 
-    <!-- DARK MODE SCRIPT -->
+    <!-- DARK MODE -->
 
     <script>
 
