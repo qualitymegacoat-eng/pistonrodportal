@@ -3,101 +3,205 @@
 
 <head>
 
-<title>Piston Rod Portal</title>
+    <title>Megacoat Piston Rod Portal</title>
 
-<style>
+    <style>
 
-body{
-font-family: Arial;
-padding:20px;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6f9;
+        }
 
-input{
-padding:10px;
-width:300px;
-}
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-button{
-padding:10px;
-}
+        .header img {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border-radius: 10px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
 
-table{
-border-collapse: collapse;
-width:100%;
-margin-top:20px;
-}
+        .header h1 {
+            margin: 0;
+            font-size: 34px;
+        }
 
-table, th, td{
-border:1px solid black;
-padding:8px;
-font-size:14px;
-}
+        .header p {
+            margin-top: 8px;
+            font-size: 18px;
+        }
 
-th{
-background:#ddd;
-}
+        .container {
+            padding: 30px;
+        }
 
-</style>
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input {
+            width: 400px;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 14px 22px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #0055aa;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #003366;
+            color: white;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 10px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background: white;
+        }
+
+        .developer-name {
+            color: #003366;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-<h1>Piston Rod Search Portal</h1>
+    <div class="header">
 
-<form method="POST">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
 
-<input type="text" name="search" placeholder="Search Part No / Application">
+        <h1>Megacoat Surface Treatments LLP</h1>
 
-<button type="submit">Search</button>
+        <p>Piston Rod Search Portal</p>
 
-</form>
+    </div>
 
-<table>
+    <div class="container">
 
-{% if results %}
+        <div class="search-box">
 
-<tr>
+            <form method="POST">
 
-<th>Sr No</th>
-<th>Part No</th>
-<th>Rev Date</th>
-<th>Application</th>
-<th>Total Length</th>
-<th>Plating Length</th>
-<th>Chrome Before</th>
-<th>Chrome After</th>
-<th>Nickel</th>
-<th>Piston End</th>
-<th>Plant</th>
-<th>Identification</th>
+                <input type="text"
+                       name="search"
+                       placeholder="Search Part No / Application / Plant"
+                       required>
 
-</tr>
+                <button type="submit">Search</button>
 
-{% for row in results %}
+            </form>
 
-<tr>
+        </div>
 
-<td>{{ row[0] }}</td>
-<td>{{ row[1] }}</td>
-<td>{{ row[2] }}</td>
-<td>{{ row[3] }}</td>
-<td>{{ row[4] }}</td>
-<td>{{ row[5] }}</td>
-<td>{{ row[6] }}</td>
-<td>{{ row[7] }}</td>
-<td>{{ row[8] }}</td>
-<td>{{ row[9] }}</td>
-<td>{{ row[10] }}</td>
-<td>{{ row[11] }}</td>
+        {% if results %}
 
-</tr>
+        <table>
 
-{% endfor %}
+            <tr>
+                <th>Sr No</th>
+                <th>Part No</th>
+                <th>Rev Date</th>
+                <th>Application</th>
+                <th>Total Length</th>
+                <th>Plating Length</th>
+                <th>Chrome Before</th>
+                <th>Chrome After</th>
+                <th>Nickel</th>
+                <th>Piston End</th>
+                <th>Plant</th>
+                <th>Identification</th>
+            </tr>
 
-{% endif %}
+            {% for row in results %}
 
-</table>
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>{{ row[9] }}</td>
+                <td>{{ row[10] }}</td>
+                <td>{{ row[11] }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% endif %}
+
+    </div>
+
+    <div class="footer">
+
+        <h3>Developed for Megacoat Surface Treatments LLP</h3>
+
+        <div class="developer-name">
+            Developed By - Mr. Suyash Thorat
+        </div>
+
+    </div>
 
 </body>
 
