@@ -7,6 +7,7 @@
     <title>Megacoat Piston Rod Portal</title>
 
     <style>
+
         *{
             margin:0;
             padding:0;
@@ -34,6 +35,7 @@
             padding:25px 18px;
             box-shadow:4px 0 15px rgba(0,0,0,0.25);
             z-index:1000;
+            overflow-y:auto;
         }
 
         .sidebar-logo{
@@ -96,7 +98,6 @@
             display:flex;
             justify-content:space-between;
             align-items:center;
-            margin:0;
         }
 
         .dropdown-btn:hover{
@@ -127,6 +128,8 @@
         .main{
             margin-left:250px;
             width:calc(100% - 250px);
+            min-height:100vh;
+            position:relative;
         }
 
         .header{
@@ -140,8 +143,7 @@
         }
 
         .header h1{
-            font-size:40px;
-            letter-spacing:1px;
+            font-size:42px;
             margin-bottom:15px;
         }
 
@@ -155,7 +157,7 @@
         }
 
         .header p{
-            font-size:20px;
+            font-size:22px;
         }
 
         .dark-btn{
@@ -169,7 +171,6 @@
             color:#003366;
             font-weight:bold;
             cursor:pointer;
-            margin:0;
         }
 
         .add-part-btn{
@@ -186,7 +187,7 @@
 
         .container{
             width:94%;
-            margin:30px auto;
+            margin:30px auto 120px auto;
         }
 
         .search-box{
@@ -229,7 +230,6 @@
             font-size:16px;
             cursor:pointer;
             font-weight:bold;
-            margin:0;
         }
 
         .table-container{
@@ -299,13 +299,23 @@
         }
 
         .footer{
-            margin-top:30px;
+            position:fixed;
+            bottom:0;
+            left:250px;
+            width:calc(100% - 250px);
+
             background:white;
+
             text-align:center;
-            padding:25px;
-            border-radius:15px;
-            box-shadow:0 3px 12px rgba(0,0,0,0.08);
-            margin-bottom:30px;
+
+            padding:15px 20px;
+
+            box-shadow:0 -2px 12px rgba(0,0,0,0.12);
+
+            z-index:999;
+
+            border-top-left-radius:15px;
+            border-top-right-radius:15px;
         }
 
         .footer h3{
@@ -332,11 +342,6 @@
             color:white !important;
         }
 
-        .dark-mode .search-title,
-        .dark-mode .footer h3{
-            color:white;
-        }
-
         .dark-mode td{
             color:white;
             border-color:#444;
@@ -357,6 +362,7 @@
         }
 
         @media(max-width:768px){
+
             .layout{
                 display:block;
             }
@@ -403,8 +409,16 @@
             .search-btn{
                 width:100%;
             }
+
+            .footer{
+                left:0;
+                width:100%;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
@@ -483,7 +497,6 @@
 
             {% if logged_in %}
                 <a href="/add" class="add-part-btn">+ Add Part</a>
-                <a href="/logout" class="add-part-btn" style="top:150px; background:red;">Logout</a>
             {% else %}
                 <a href="/login" class="add-part-btn">👤 Admin Login</a>
             {% endif %}
@@ -544,6 +557,7 @@
                     {% for row in results %}
 
                     <tr>
+
                         <td>{{ row[0] }}</td>
                         <td><b>{{ row[1] }}</b></td>
                         <td>{{ row[2] }}</td>
@@ -558,25 +572,39 @@
                         <td>{{ row[11] }}</td>
 
                         <td>
+
                             <a class="drawing-btn"
                                href="/static/drawings/{{ row[1] }}.jpg"
                                target="_blank">
+
                                 View Drawing
+
                             </a>
 
                             {% if logged_in %}
+
                             <br>
-                            <a class="edit-btn" href="/edit/{{ row[1] }}">
+
+                            <a class="edit-btn"
+                               href="/edit/{{ row[1] }}">
+
                                 Edit
+
                             </a>
+
                             <br>
+
                             <a class="delete-btn"
-                               href="/delete/{{ row[1] }}"
-                               onclick="return confirm('Delete this part?')">
+                               href="/delete/{{ row[1] }}">
+
                                 Delete
+
                             </a>
+
                             {% endif %}
+
                         </td>
+
                     </tr>
 
                     {% endfor %}
@@ -587,14 +615,16 @@
 
             {% endif %}
 
-            <div class="footer">
+        </div>
 
-                <h3>Developed for Megacoat Surface Treatments LLP</h3>
+        <div class="footer">
 
-                <div class="developer-name">
-                    Developed By - Mr. Suyash Thorat | Quality Engineer
-                </div>
+            <h3>
+                Developed for Megacoat Surface Treatments LLP
+            </h3>
 
+            <div class="developer-name">
+                Developed By - Mr. Suyash Thorat | Quality Engineer
             </div>
 
         </div>
@@ -604,19 +634,29 @@
 </div>
 
 <script>
+
     function toggleDarkMode(){
+
         document.body.classList.toggle("dark-mode");
+
     }
 
     function toggleDropdown(){
+
         var dropdown = document.getElementById("postChromeDropdown");
 
         if(dropdown.style.display === "block"){
+
             dropdown.style.display = "none";
+
         }else{
+
             dropdown.style.display = "block";
+
         }
+
     }
+
 </script>
 
 </body>
