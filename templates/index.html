@@ -60,7 +60,6 @@
             cursor:pointer;
             display:block;
             margin:0 auto 25px auto;
-            box-shadow:0 0 10px rgba(0,0,0,0.25);
         }
 
         .side-menu a{
@@ -118,7 +117,6 @@
             color:white;
             text-decoration:none;
             font-size:14px;
-            border-bottom:1px solid rgba(255,255,255,0.12);
         }
 
         .dropdown-content a:hover{
@@ -174,15 +172,47 @@
         }
 
         .add-part-btn{
+
             position:absolute;
+
             right:35px;
+
             top:95px;
+
             padding:12px 20px;
+
             border-radius:8px;
+
             background:#0055aa;
+
             color:white;
+
             font-weight:bold;
+
             text-decoration:none;
+
+        }
+
+        .logout-btn{
+
+            position:absolute;
+
+            right:35px;
+
+            top:150px;
+
+            padding:12px 20px;
+
+            border-radius:8px;
+
+            background:red;
+
+            color:white;
+
+            font-weight:bold;
+
+            text-decoration:none;
+
         }
 
         .container{
@@ -303,19 +333,11 @@
             bottom:0;
             left:250px;
             width:calc(100% - 250px);
-
             background:white;
-
             text-align:center;
-
             padding:15px 20px;
-
             box-shadow:0 -2px 12px rgba(0,0,0,0.12);
-
             z-index:999;
-
-            border-top-left-radius:15px;
-            border-top-right-radius:15px;
         }
 
         .footer h3{
@@ -361,62 +383,6 @@
             background:#333;
         }
 
-        @media(max-width:768px){
-
-            .layout{
-                display:block;
-            }
-
-            .sidebar{
-                position:relative;
-                width:100%;
-                height:auto;
-            }
-
-            .main{
-                margin-left:0;
-                width:100%;
-            }
-
-            .header{
-                padding:35px 20px;
-            }
-
-            .header h1{
-                font-size:28px;
-            }
-
-            .slogan{
-                font-size:24px;
-            }
-
-            .dark-btn,
-            .add-part-btn{
-                position:static;
-                display:inline-block;
-                margin:8px;
-            }
-
-            .search-form{
-                display:block;
-            }
-
-            input{
-                width:100%;
-                margin-bottom:15px;
-            }
-
-            .search-btn{
-                width:100%;
-            }
-
-            .footer{
-                left:0;
-                width:100%;
-            }
-
-        }
-
     </style>
 
 </head>
@@ -443,19 +409,19 @@
             </a>
 
             <a href="#">
-                <span> Finish Grinding</span>
+                <span>Finish Grinding</span>
                 <span>›</span>
             </a>
 
             <a href="#">
-                <span> Plating</span>
+                <span>Plating</span>
                 <span>›</span>
             </a>
 
             <div class="dropdown">
 
                 <button class="dropdown-btn" onclick="toggleDropdown()">
-                    <span> Post Chrome Grinding</span>
+                    <span>Post Chrome Grinding</span>
                     <span>▼</span>
                 </button>
 
@@ -474,12 +440,12 @@
             </div>
 
             <a href="#">
-                <span> Final Dispatch</span>
+                <span>Final Dispatch</span>
                 <span>›</span>
             </a>
 
             <a href="#">
-                <span> PDI</span>
+                <span>PDI</span>
                 <span>›</span>
             </a>
 
@@ -496,9 +462,30 @@
             </button>
 
             {% if logged_in %}
-                <a href="/add" class="add-part-btn">+ Add Part</a>
+
+            <a href="/add"
+               class="add-part-btn">
+
+               + Add / Edit / Delete
+
+            </a>
+
+            <a href="/logout"
+               class="logout-btn">
+
+               Logout
+
+            </a>
+
             {% else %}
-                <a href="/login" class="add-part-btn">👤 Admin Login</a>
+
+            <a href="/login"
+               class="add-part-btn">
+
+               👤 Admin Login
+
+            </a>
+
             {% endif %}
 
             <h1>Megacoat Surface Treatments LLP</h1>

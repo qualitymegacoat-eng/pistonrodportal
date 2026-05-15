@@ -1,27 +1,36 @@
-<h1>Edit Part</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Part</title>
+</head>
 
-<form method="POST">
+<body style="font-family:Arial; background:#eef2f7; padding:40px;">
 
-<input name="rev_date" value="{{ row[2] }}"><br><br>
+<div style="width:700px; margin:auto; background:white; padding:30px; border-radius:15px;">
 
-<input name="application" value="{{ row[3] }}"><br><br>
+    <h1 style="text-align:center; color:#003366;">Edit Part</h1>
 
-<input name="total_length" value="{{ row[4] }}"><br><br>
+    <form method="POST">
 
-<input name="plating_length" value="{{ row[5] }}"><br><br>
+        <input name="sr_no" value="{{ row['Sr No'] }}" placeholder="Sr No" required><br><br>
+        <input name="part_no" value="{{ row['Part No'] }}" placeholder="Part No" required><br><br>
+        <input name="rev_date" value="{{ row['Rev Date'] }}" placeholder="Rev Date"><br><br>
+        <input name="application" value="{{ row['Application'] }}" placeholder="Application"><br><br>
+        <input name="total_length" value="{{ row['Total Length'] }}" placeholder="Total Length"><br><br>
+        <input name="plating_length" value="{{ row['Plating Length'] }}" placeholder="Plating Length"><br><br>
+        <input name="chrome_before" value="{{ row['Chrome Before'] }}" placeholder="Chrome Before"><br><br>
+        <input name="chrome_after" value="{{ row['Chrome After'] }}" placeholder="Chrome After"><br><br>
+        <input name="nickel" value="{{ row['Nickel'] }}" placeholder="Nickel"><br><br>
+        <input name="piston_end" value="{{ row['Piston End'] }}" placeholder="Piston End"><br><br>
+        <input name="plant" value="{{ row['Plant'] }}" placeholder="Plant"><br><br>
+        <input name="identification" value="{{ row['Identification'] }}" placeholder="Identification"><br><br>
 
-<input name="chrome_before" value="{{ row[6] }}"><br><br>
+        <button type="submit">Update Part</button>
+        <a href="/" style="margin-left:20px;">Back</a>
 
-<input name="chrome_after" value="{{ row[7] }}"><br><br>
+    </form>
 
-<input name="nickel" value="{{ row[8] }}"><br><br>
+</div>
 
-<input name="piston_end" value="{{ row[9] }}"><br><br>
-
-<input name="plant" value="{{ row[10] }}"><br><br>
-
-<input name="identification" value="{{ row[11] }}"><br><br>
-
-<button type="submit">Update Part</button>
-
-</form>
+</body>
+</html>

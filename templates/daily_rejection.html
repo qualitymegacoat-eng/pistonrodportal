@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Daily Rejection Trend</title>
-
+    <title>Daily Defect Analysis</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -26,11 +24,13 @@
         h1{
             text-align:center;
             color:#003366;
-            margin-bottom:30px;
+            margin-bottom:10px;
         }
 
-        canvas{
-            max-height:500px;
+        h2{
+            text-align:center;
+            color:#555;
+            margin-bottom:30px;
         }
 
         .back-btn{
@@ -42,6 +42,10 @@
             text-decoration:none;
             border-radius:8px;
         }
+
+        canvas{
+            max-height:700px;
+        }
     </style>
 </head>
 
@@ -51,54 +55,38 @@
 
     <a href="/" class="back-btn">← Back To Portal</a>
 
-    <h1>Daily Rejection & Rework Trend - May 2026</h1>
+    <h1>Daily Defect Analysis</h1>
+    <h2>Date: {{ latest_date }}</h2>
 
-    <canvas id="rejectionChart"></canvas>
+    <canvas id="defectChart"></canvas>
 
 </div>
 
 <script>
-const ctx = document.getElementById('rejectionChart');
+const ctx = document.getElementById('defectChart');
 
 new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
 
     data: {
-        labels: {{ dates | tojson }},
-
-        datasets: [
-            {
-                label: 'Daily Rejection Qty',
-                data: {{ rejection_qty | tojson }},
-                borderWidth: 4,
-                fill: false,
-                tension: 0.3
-            },
-            {
-                label: 'Daily Rework Qty',
-                data: {{ rework_qty | tojson }},
-                borderWidth: 4,
-                fill: false,
-                tension: 0.3
-            }
-        ]
+        labels: {{ defects | tojson }},
+        datasets: [{
+            label: 'Defect Qty',
+            data: {{ values | tojson }},
+            borderWidth: 1
+        }]
     },
 
     options: {
+        indexAxis: 'y',
         responsive: true,
-
         plugins: {
             legend: {
-                labels: {
-                    font: {
-                        size: 16
-                    }
-                }
+                display: false
             }
         },
-
         scales: {
-            y: {
+            x: {
                 beginAtZero: true
             }
         }

@@ -1,103 +1,36 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <title>Add New Part</title>
-
-    <style>
-
-        body{
-            font-family:Arial;
-            background:#eef2f7;
-            padding:40px;
-        }
-
-        .box{
-            width:700px;
-            margin:auto;
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            box-shadow:0 0 15px rgba(0,0,0,0.1);
-        }
-
-        h1{
-            text-align:center;
-            color:#003366;
-            margin-bottom:25px;
-        }
-
-        input{
-            width:100%;
-            padding:12px;
-            margin-bottom:15px;
-            border:1px solid #ccc;
-            border-radius:8px;
-            font-size:15px;
-        }
-
-        button{
-            width:100%;
-            padding:14px;
-            background:#003366;
-            color:white;
-            border:none;
-            border-radius:8px;
-            font-size:16px;
-            cursor:pointer;
-        }
-
-        button:hover{
-            background:#0055aa;
-        }
-
-    </style>
-
 </head>
 
-<body>
+<body style="font-family:Arial; background:#eef2f7; padding:40px;">
 
-    <div class="box">
+<div style="width:700px; margin:auto; background:white; padding:30px; border-radius:15px;">
 
-        <h1>Add New Part</h1>
+    <h1 style="text-align:center; color:#003366;">Add New Part</h1>
 
-        <form method="POST">
+    <form method="POST">
 
-            <input name="sr_no" placeholder="Sr No" required>
+        <input name="sr_no" placeholder="Sr No" required><br><br>
+        <input name="part_no" placeholder="Part No" required><br><br>
+        <input name="rev_date" placeholder="Rev Date"><br><br>
+        <input name="application" placeholder="Application"><br><br>
+        <input name="total_length" placeholder="Total Length"><br><br>
+        <input name="plating_length" placeholder="Plating Length"><br><br>
+        <input name="chrome_before" placeholder="Chrome Before"><br><br>
+        <input name="chrome_after" placeholder="Chrome After"><br><br>
+        <input name="nickel" placeholder="Nickel"><br><br>
+        <input name="piston_end" placeholder="Piston End"><br><br>
+        <input name="plant" placeholder="Plant"><br><br>
+        <input name="identification" placeholder="Identification"><br><br>
 
-            <input name="part_no" placeholder="Part No" required>
+        <button type="submit">Save Part</button>
+        <a href="/" style="margin-left:20px;">Back</a>
 
-            <input name="rev_date" placeholder="Rev Date">
+    </form>
 
-            <input name="application" placeholder="Application">
-
-            <input name="total_length" placeholder="Total Length">
-
-            <input name="plating_length" placeholder="Plating Length">
-
-            <input name="chrome_before" placeholder="Chrome Before">
-
-            <input name="chrome_after" placeholder="Chrome After">
-
-            <input name="nickel" placeholder="Nickel">
-
-            <input name="piston_end" placeholder="Piston End">
-
-            <input name="plant" placeholder="Plant">
-
-            <input name="identification" placeholder="Identification">
-
-            <button type="submit">
-
-                Save Part
-
-            </button>
-
-        </form>
-
-    </div>
+</div>
 
 </body>
-
 </html>
