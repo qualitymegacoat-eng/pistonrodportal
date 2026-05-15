@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Daily Rejection Trend</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body{
+            font-family:Arial;
+            background:#eef2f7;
+            margin:0;
+            padding:30px;
+        }
+
+        .container{
+            width:95%;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            color:#003366;
+            margin-bottom:30px;
+        }
+
+        canvas{
+            max-height:500px;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-bottom:20px;
+            background:#003366;
+            color:white;
+            padding:10px 20px;
+            text-decoration:none;
+            border-radius:8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="/" class="back-btn">← Back To Portal</a>
+
+    <h1>Daily Rejection & Rework Trend - May 2026</h1>
+
+    <canvas id="rejectionChart"></canvas>
+
+</div>
+
+<script>
+const ctx = document.getElementById('rejectionChart');
+
+new Chart(ctx, {
+    type: 'line',
+
+    data: {
+        labels: {{ dates | tojson }},
+
+        datasets: [
+            {
+                label: 'Daily Rejection Qty',
+                data: {{ rejection_qty | tojson }},
+                borderWidth: 4,
+                fill: false,
+                tension: 0.3
+            },
+            {
+                label: 'Daily Rework Qty',
+                data: {{ rework_qty | tojson }},
+                borderWidth: 4,
+                fill: false,
+                tension: 0.3
+            }
+        ]
+    },
+
+    options: {
+        responsive: true,
+
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 16
+                    }
+                }
+            }
+        },
+
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

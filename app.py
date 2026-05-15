@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, send_from_directory
 import pandas as pd
 import os
 
@@ -7,21 +7,22 @@ app.secret_key = "megacoat123"
 
 USERNAME = "admin"
 PASSWORD = "1234"
-EXCEL_FILE = "rods.xlsx"
+
+PART_FILE = "rods.xlsx"
+REJECTION_FILE = "rejection_data.xlsx"
 
 
-def load_data():
-    if os.path.exists(EXCEL_FILE):
-        df = pd.read_excel(EXCEL_FILE)
+def load_parts():
+    if os.path.exists(PART_FILE):
+        df = pd.read_excel(PART_FILE)
         df = df.fillna("")
         return df
-
     return pd.DataFrame()
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    df = load_data()
+    df = load_parts()
     results = []
 
     if request.method == "POST":
@@ -41,13 +42,50 @@ def index():
     )
 
 
-@app.route("/check")
-def check():
-    if not os.path.exists(EXCEL_FILE):
-        return "ERROR: rods.xlsx file not found on server"
+@app.route("/daily_rejection")
+def daily_rejection():
+    if not os.path.exists(REJECTION_FILE):
+        return "rejection_data.xlsx file not found"
 
-    df = load_data()
-    return f"Excel found. Total rows: {len(df)} Columns: {list(df.columns)}"
+    df = pd.read_excel(
+        REJECTION_FILE,
+        sheet_name="May-2026 Report",
+        header=None
+    )
+
+    rejection_row_index = df[df.apply(
+        lambda row: row.astype(str).str.strip().eq("Rejection Qty").any(),
+        axis=1
+    )].index[0]
+
+    rework_row_index = df[df.apply(
+        lambda row: row.astype(str).str.strip().eq("Rework Qty").any(),
+        axis=1
+    )].index[0]
+
+    dates = []
+    rejection_qty = []
+    rework_qty = []
+
+    for col in range(df.shape[1]):
+        date_value = df.iloc[1, col]
+        parsed_date = pd.to_datetime(date_value, errors="coerce")
+
+        if pd.notna(parsed_date):
+            dates.append(parsed_date.strftime("%d-%m"))
+
+            rejection_value = df.iloc[rejection_row_index, col]
+            rework_value = df.iloc[rework_row_index, col]
+
+            rejection_qty.append(0 if pd.isna(rejection_value) else float(rejection_value))
+            rework_qty.append(0 if pd.isna(rework_value) else float(rework_value))
+
+    return render_template(
+        "daily_rejection.html",
+        dates=dates,
+        rejection_qty=rejection_qty,
+        rework_qty=rework_qty
+    )
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -78,7 +116,22 @@ def add():
     if not session.get("logged_in"):
         return redirect("/login")
 
-    return "Add/Edit/Delete is temporarily disabled because Excel is the main data source."
+    return "Add/Edit/Delete System Coming Soon"
+
+
+@app.route("/viewpdf/<path:filename>")
+def view_pdf(filename):
+    return send_from_directory(
+        "static/docs",
+        filename,
+        mimetype="application/pdf"
+    )
+
+
+@app.route("/check")
+def check():
+    df = load_parts()
+    return f"Parts Excel found. Total rows: {len(df)}"
 
 
 if __name__ == "__main__":
