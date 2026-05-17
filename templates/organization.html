@@ -4,37 +4,43 @@
     <title>Organization Chart</title>
 
     <style>
+
         body{
             margin:0;
-            padding:25px;
+            padding:5px;
             font-family:Arial, sans-serif;
-            background:#f4f7fb;
+            background:#eef2f7;
+            overflow:auto;
         }
 
         h1{
             text-align:center;
             color:#003366;
-            margin-bottom:25px;
+            margin-bottom:5px;
+            font-size:24px;
         }
 
         .back-btn{
             background:#003366;
             color:white;
-            padding:10px 18px;
-            border-radius:8px;
+            padding:6px 14px;
+            border-radius:6px;
             text-decoration:none;
             font-weight:bold;
+            font-size:11px;
         }
 
         .chart{
-            margin-top:35px;
-            overflow-x:auto;
-            padding-bottom:40px;
+            margin-top:10px;
+            padding-bottom:20px;
+            zoom:0.45;
+            transform-origin:top center;
+            width:100%;
         }
 
         .tree,
         .tree ul{
-            padding-top:20px;
+            padding-top:15px;
             position:relative;
             display:flex;
             justify-content:center;
@@ -44,7 +50,7 @@
             list-style:none;
             text-align:center;
             position:relative;
-            padding:20px 8px 0 8px;
+            padding:15px 4px 0 4px;
         }
 
         .tree li::before,
@@ -55,7 +61,7 @@
             right:50%;
             border-top:2px solid #003366;
             width:50%;
-            height:20px;
+            height:15px;
         }
 
         .tree li::after{
@@ -94,17 +100,17 @@
             left:50%;
             border-left:2px solid #003366;
             width:0;
-            height:20px;
+            height:15px;
         }
 
         .box{
-            min-width:170px;
+            min-width:115px;
             background:white;
             border:2px solid #003366;
-            border-radius:8px;
-            padding:10px;
+            border-radius:6px;
+            padding:6px;
             display:inline-block;
-            box-shadow:0 3px 10px rgba(0,0,0,0.12);
+            box-shadow:0 2px 6px rgba(0,0,0,0.1);
         }
 
         .gm{
@@ -114,7 +120,7 @@
 
         .name{
             display:block;
-            font-size:15px;
+            font-size:9px;
             font-weight:bold;
             color:#003366;
         }
@@ -125,15 +131,16 @@
 
         .role{
             display:block;
-            font-size:12px;
+            font-size:7px;
             color:#333;
-            margin-top:5px;
-            line-height:1.4;
+            margin-top:3px;
+            line-height:1.2;
         }
 
         .gm .role{
-            color:#e8eef7;
+            color:#dce6f5;
         }
+
     </style>
 </head>
 
@@ -147,177 +154,216 @@
 
 <ul class="tree">
 <li>
-    <div class="box gm">
-        <span class="name">Vivek Khodke</span>
-        <span class="role">General Manager</span>
-    </div>
 
-    <ul>
+<div class="box gm">
+    <span class="name">Vivek Dhokle</span>
+    <span class="role">General Manager</span>
+</div>
 
-        <li>
-            <div class="box">
-                <span class="name">Sanket Nehe</span>
-                <span class="role">Sr. Manager - Production</span>
-            </div>
+<ul>
 
-            <ul>
-                <li>
-                    <div class="box">
-                        <span class="name">Ravi Sawant</span>
-                        <span class="role">Asst. Manager - Production</span>
-                    </div>
+<li>
 
-                    <ul>
-                        <li>
-                            <div class="box">
-                                <span class="name">Shankar Kadbhane</span>
-                                <span class="role">Sr. Officer - Production Plating</span>
-                            </div>
+<div class="box">
+    <span class="name">Sanket Birke</span>
+    <span class="role">Sr. Manager - Production</span>
+</div>
 
-                            <ul>
-                                <li>
-                                    <div class="box">
-                                        <span class="name">Pradip Singh</span>
-                                        <span class="role">Shift Supervisor</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+<ul>
 
-                        <li>
-                            <div class="box">
-                                <span class="name">Nishant Patil</span>
-                                <span class="role">Store</span>
-                            </div>
+<li>
 
-                            <ul>
-                                <li>
-                                    <div class="box">
-                                        <span class="name">Deva Gavit</span>
-                                        <span class="role">Shift Supervisor</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+<div class="box">
+    <span class="name">Ravi Sawant</span>
+    <span class="role">Asst. Manager - Production</span>
+</div>
 
-                        <li>
-                            <div class="box">
-                                <span class="name">Grinding Supervisor</span>
-                                <span class="role">Production</span>
-                            </div>
+<ul>
 
-                            <ul>
-                                <li>
-                                    <div class="box">
-                                        <span class="name">Nilesh Daware</span>
-                                        <span class="role">Shift Supervisor</span>
-                                    </div>
-                                </li>
+<li>
+<div class="box">
+    <span class="name">Shankar Kadbhane</span>
+    <span class="role">Sr. Officer - Production Plating</span>
+</div>
 
-                                <li>
-                                    <div class="box">
-                                        <span class="name">Vinod Sonawane</span>
-                                        <span class="role">Shift Supervisor</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+<ul>
+<li>
+<div class="box">
+    <span class="name">Pradip Singh</span>
+    <span class="role">Shift Supervisor</span>
+</div>
+</li>
+</ul>
 
-                        <li>
-                            <div class="box">
-                                <span class="name">Maintenance</span>
-                                <span class="role">Department</span>
-                            </div>
+</li>
 
-                            <ul>
-                                <li>
-                                    <div class="box">
-                                        <span class="name">Santosh Daware</span>
-                                        <span class="role">Electrical</span>
-                                    </div>
-                                </li>
+<li>
 
-                                <li>
-                                    <div class="box">
-                                        <span class="name">Bhagwan Ahire</span>
-                                        <span class="role">Mechanical</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
+<div class="box">
+    <span class="name">Nishant Patil</span>
+    <span class="role">Store</span>
+</div>
 
-        <li>
-            <div class="box">
-                <span class="name">Incharge Sales</span>
-                <span class="role">Head Office</span>
-            </div>
-        </li>
+<ul>
+<li>
+<div class="box">
+    <span class="name">Deva Gavit</span>
+    <span class="role">Shift Supervisor</span>
+</div>
+</li>
+</ul>
 
-        <li>
-            <div class="box">
-                <span class="name">Incharge Purchase</span>
-                <span class="role">Head Office</span>
-            </div>
-        </li>
+</li>
 
-        <li>
-            <div class="box">
-                <span class="name">Sangram Jadhav</span>
-                <span class="role">Manager - HR & Administration</span>
-            </div>
-        </li>
+<li>
 
-        <li>
-            <div class="box">
-                <span class="name">Sandesh Wagh</span>
-                <span class="role">Sr. Manager - Quality Management System Coordinator</span>
-            </div>
+<div class="box">
+    <span class="name">Grinding Supervisor</span>
+    <span class="role">Production</span>
+</div>
 
-            <ul>
-                <li>
-                    <div class="box">
-                        <span class="name">Shubham Vishwakarma</span>
-                        <span class="role">Quality Supervisor</span>
-                    </div>
+<ul>
 
-                    <ul>
-                        <li>
-                            <div class="box">
-                                <span class="name">Vishal Porje</span>
-                                <span class="role">Inspector - Quality</span>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
+<li>
+<div class="box">
+    <span class="name">Nilesh Daware</span>
+    <span class="role">Shift Supervisor</span>
+</div>
+</li>
 
-                <li>
-                    <div class="box">
-                        <span class="name">Shubham Wagh</span>
-                        <span class="role">Officer - Quality</span>
-                    </div>
-                </li>
+<li>
+<div class="box">
+    <span class="name">Vinod Sonawane</span>
+    <span class="role">Shift Supervisor</span>
+</div>
+</li>
 
-                <li>
-                    <div class="box">
-                        <span class="name">Jubher Pathan</span>
-                        <span class="role">Officer - Quality</span>
-                    </div>
-                </li>
+</ul>
 
-                <li>
-                    <div class="box">
-                        <span class="name">Suyash Thorat</span>
-                        <span class="role">Quality Engineer</span>
-                    </div>
-                </li>
-            </ul>
-        </li>
+</li>
 
-    </ul>
+<li>
+
+<div class="box">
+    <span class="name">Maintenance</span>
+    <span class="role">Department</span>
+</div>
+
+<ul>
+
+<li>
+<div class="box">
+    <span class="name">Santosh Daware</span>
+    <span class="role">Electrical</span>
+</div>
+</li>
+
+<li>
+<div class="box">
+    <span class="name">Bhagwan Ahire</span>
+    <span class="role">Mechanical</span>
+</div>
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</li>
+
+<li>
+
+<div class="box">
+    <span class="name">Incharge Sales</span>
+    <span class="role">Head Office</span>
+</div>
+
+</li>
+
+<li>
+
+<div class="box">
+    <span class="name">Incharge Purchase</span>
+    <span class="role">Head Office</span>
+</div>
+
+</li>
+
+<li>
+
+<div class="box">
+    <span class="name">Sangram Jadhav</span>
+    <span class="role">Manager - HR & Administration</span>
+</div>
+
+</li>
+
+<li>
+
+<div class="box">
+    <span class="name">Sandesh Vagh</span>
+    <span class="role">Sr. Manager - Quality Management System Coordinator</span>
+</div>
+
+<ul>
+
+<li>
+
+<div class="box">
+    <span class="name">Shubham Vishwakarma</span>
+    <span class="role">Quality Supervisor</span>
+</div>
+
+<ul>
+<li>
+<div class="box">
+    <span class="name">Vishal Porje</span>
+    <span class="role">Inspector - Quality</span>
+</div>
+</li>
+</ul>
+
+</li>
+
+<li>
+
+<div class="box">
+    <span class="name">Shubham Vagh</span>
+    <span class="role">Officer - Quality</span>
+</div>
+
+</li>
+
+<li>
+
+<div class="box">
+    <span class="name">Jubher Pathan</span>
+    <span class="role">Officer - Quality</span>
+</div>
+
+</li>
+
+<li>
+
+<div class="box">
+    <span class="name">Suyash Thorat</span>
+    <span class="role">Quality Engineer</span>
+</div>
+
+</li>
+
+</ul>
+
+</li>
+
+</ul>
+
 </li>
 </ul>
 
