@@ -328,6 +328,14 @@ def daily_rejection():
     )
 
 
+@app.route("/organization")
+def organization():
+
+    return render_template(
+        "organization.html"
+    )
+
+
 @app.route("/check")
 def check():
 
