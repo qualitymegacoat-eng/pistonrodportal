@@ -1,95 +1,110 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-    <title>Login</title>
+    <title>Admin Login</title>
 
     <style>
-
         body{
-            font-family:Arial;
-            background:#eef2f7;
+            margin:0;
+            font-family:Arial, sans-serif;
+            background:linear-gradient(135deg,#002244,#004080);
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
         }
 
         .login-box{
-            width:350px;
-            margin:120px auto;
             background:white;
-            padding:30px;
-            border-radius:15px;
-            box-shadow:0 0 15px rgba(0,0,0,0.1);
+            width:380px;
+            padding:35px;
+            border-radius:18px;
+            box-shadow:0 8px 25px rgba(0,0,0,0.3);
+            text-align:center;
         }
 
-        h1{
-            text-align:center;
+        .login-box img{
+            width:150px;
+            margin-bottom:20px;
+        }
+
+        h2{
             color:#003366;
+            margin-bottom:25px;
         }
 
         input{
             width:100%;
-            padding:12px;
-            margin-top:15px;
-            border:1px solid #ccc;
-            border-radius:8px;
+            padding:13px;
+            margin-bottom:18px;
+            border:2px solid #d0d7e2;
+            border-radius:10px;
+            font-size:15px;
         }
 
         button{
             width:100%;
-            padding:12px;
-            margin-top:20px;
+            padding:13px;
             background:#003366;
             color:white;
             border:none;
-            border-radius:8px;
+            border-radius:10px;
             font-size:16px;
+            font-weight:bold;
             cursor:pointer;
+        }
+
+        button:hover{
+            background:#0055aa;
         }
 
         .error{
             color:red;
-            text-align:center;
-            margin-top:10px;
+            font-weight:bold;
+            margin-bottom:15px;
         }
 
+        .back{
+            display:block;
+            margin-top:18px;
+            color:#003366;
+            text-decoration:none;
+            font-weight:bold;
+        }
     </style>
-
 </head>
 
 <body>
 
-    <div class="login-box">
+<div class="login-box">
 
-        <h1>Admin Login</h1>
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
 
-        <form method="POST">
+    <h2>Admin Login</h2>
 
-            <input type="text"
-                   name="username"
-                   placeholder="Username"
-                   required>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
 
-            <input type="password"
-                   name="password"
-                   placeholder="Password"
-                   required>
+    <form method="POST">
 
-            <button type="submit">
+        <input type="text"
+               name="username"
+               placeholder="Enter Username"
+               required>
 
-                Login
+        <input type="password"
+               name="password"
+               placeholder="Enter Password"
+               required>
 
-            </button>
+        <button type="submit">Login</button>
 
-        </form>
+    </form>
 
-        <div class="error">
+    <a href="/" class="back">← Back To Portal</a>
 
-            {{ error }}
-
-        </div>
-
-    </div>
+</div>
 
 </body>
-
 </html>

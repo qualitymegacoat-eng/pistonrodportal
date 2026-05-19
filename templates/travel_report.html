@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Official Travel Report</title>
+</head>
+
+<body style="font-family:Arial; background:#eef2f7; padding:30px;">
+
+<a href="/" style="background:#003366; color:white; padding:10px 20px; text-decoration:none; border-radius:8px;">
+    ← Back To Portal
+</a>
+
+<h1 style="color:#003366; text-align:center;">Official Travel Report</h1>
+
+<form method="POST">
+
+<table border="1" cellpadding="8" cellspacing="0" style="background:white; width:100%; border-collapse:collapse;">
+    <tr style="background:#003366; color:white;">
+        <th>Date</th>
+        <th>From</th>
+        <th>To</th>
+        <th>KM</th>
+        <th>Petrol</th>
+        <th>Total Travel Time</th>
+        <th>No. of Time in a Day</th>
+        <th>1 Paper</th>
+        <th>Purpose Of Visit</th>
+    </tr>
+
+    {% for i in range(15) %}
+    <tr>
+        <td><input type="date" name="date[]"></td>
+        <td><input type="text" name="from[]"></td>
+        <td><input type="text" name="to[]"></td>
+        <td><input type="number" name="km[]"></td>
+        <td><input type="text" name="petrol[]"></td>
+        <td><input type="text" name="travel_time[]"></td>
+        <td><input type="number" name="no_time[]"></td>
+        <td><input type="text" name="paper[]"></td>
+        <td><input type="text" name="purpose[]" value="Report"></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<button type="submit" style="background:#003366; color:white; padding:12px 25px; border:none; border-radius:8px; font-weight:bold;">
+    Download Excel Report
+</button>
+
+</form>
+
+</body>
+</html>
