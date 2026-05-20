@@ -1,930 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Megacoat Piston Rod Portal</title>
 
-    <meta charset="UTF-8">
+<style>
+.dark-mode{background:#121212!important;color:white!important;}
+.dark-mode .main{background:#121212!important;}
+.dark-mode .header{background:linear-gradient(135deg,#000,#1f1f1f)!important;}
+.dark-mode .sidebar{background:linear-gradient(180deg,#000,#1f1f1f)!important;}
+.dark-mode .search-box,.dark-mode .table-container,.dark-mode .footer,.dark-mode .hero-banner{background:#1f1f1f!important;color:white!important;}
+.dark-mode table{background:#1f1f1f!important;}
+.dark-mode th{background:#000!important;}
+.dark-mode td{color:white!important;border-bottom:1px solid #444!important;}
+.dark-mode input{background:#2b2b2b!important;color:white!important;border:2px solid #555!important;}
+.dark-mode .search-title,.dark-mode .footer h3,.dark-mode .developer-name{color:white!important;}
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    <title>Megacoat Piston Rod Portal</title>
-
-    <style>
-         .dark-mode{
-    background:#121212 !important;
-    color:white !important;
+body{
+    font-family:Arial,sans-serif;
+    background:#eef2f7;
 }
 
-.dark-mode body{
-    background:#121212 !important;
+.layout{
+    display:flex;
+    min-height:100vh;
 }
 
-.dark-mode .main{
-    background:#121212 !important;
+.sidebar{
+    width:250px;
+    background:linear-gradient(180deg,#002244,#004080);
+    color:white;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    padding:25px 18px;
+    overflow-y:auto;
+    z-index:1000;
 }
 
-.dark-mode .header{
-    background:linear-gradient(135deg,#000000,#1f1f1f) !important;
+.sidebar-logo{
+    width:180px;
+    height:140px;
+    background:white;
+    border-radius:18px;
+    padding:12px;
+    display:block;
+    margin:0 auto 25px auto;
+    object-fit:contain;
 }
 
-.dark-mode .sidebar{
-    background:linear-gradient(180deg,#000000,#1f1f1f) !important;
+.menu-btn{
+    background:white;
+    color:#003366;
+    border:none;
+    padding:10px 18px;
+    font-size:26px;
+    border-radius:10px;
+    display:block;
+    margin:0 auto 25px auto;
 }
 
-.dark-mode .search-box,
-.dark-mode .table-container,
-.dark-mode .footer{
-    background:#1f1f1f !important;
-    color:white !important;
+.side-menu a,
+.dropdown-btn{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 10px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    font-size:15px;
+    background:none;
+    width:100%;
+    border-left:none;
+    border-right:none;
+    border-top:none;
+    cursor:pointer;
 }
 
-.dark-mode table{
-    background:#1f1f1f !important;
+.side-menu a:hover,
+.dropdown-btn:hover{
+    background:rgba(255,255,255,0.12);
+    border-radius:8px;
 }
 
-.dark-mode th{
-    background:#000000 !important;
+.dropdown-content{
+    display:none;
+    background:rgba(255,255,255,0.08);
+    border-radius:8px;
+    margin-bottom:8px;
 }
 
-.dark-mode td{
-    color:white !important;
-    border-bottom:1px solid #444 !important;
+.dropdown-content a{
+    display:block;
+    padding:12px 20px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
 }
 
-.dark-mode tr:nth-child(even){
-    background:#2a2a2a !important;
+.main{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    min-height:100vh;
 }
 
-.dark-mode tr:hover{
-    background:#333 !important;
+.header{
+    background:linear-gradient(135deg,#002244,#004080);
+    color:white;
+    text-align:center;
+    padding:55px 220px;
+    position:relative;
+    min-height:260px;
 }
 
-.dark-mode input{
-    background:#2b2b2b !important;
-    color:white !important;
-    border:2px solid #555 !important;
+.header h1{
+    font-size:42px;
+    margin-bottom:15px;
 }
 
-.dark-mode .search-title,
-.dark-mode .footer h3,
-.dark-mode .developer-name{
-    color:white !important;
+.slogan{
+    font-size:38px;
+    font-weight:bold;
+    color:#ffd700;
+    margin-bottom:15px;
 }
 
-.dark-mode .side-menu a:hover,
-.dark-mode .dropdown-btn:hover{
-    background:#333 !important;
+.header p{
+    font-size:22px;
 }
 
-.dark-mode .dropdown-content{
-    background:#2b2b2b !important;
+.dark-btn{
+    position:absolute;
+    right:35px;
+    top:35px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:white;
+    color:#003366;
+    font-weight:bold;
+    cursor:pointer;
 }
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
 
-        body{
-            font-family:Arial,sans-serif;
-            background:#eef2f7;
-        }
-
-        .layout{
-            display:flex;
-            min-height:100vh;
-        }
-
-        .sidebar{
-
-            width:250px;
-
-            background:linear-gradient(180deg,#002244,#004080);
-
-            color:white;
-
-            position:fixed;
-
-            left:0;
-            top:0;
-            bottom:0;
-
-            padding:25px 18px;
-
-            box-shadow:4px 0 15px rgba(0,0,0,0.25);
-
-            overflow-y:auto;
-
-            z-index:1000;
-        }
-
-        .sidebar-logo{
-
-            width:180px;
-            height:140px;
-
-            background:white;
-
-            border-radius:18px;
-
-            padding:12px;
-
-            display:block;
-
-            margin:0 auto 25px auto;
-
-            object-fit:contain;
-
-            box-shadow:0 0 18px rgba(255,255,255,0.35);
-        }
-
-        .menu-btn{
-
-            background:white;
-
-            color:#003366;
-
-            border:none;
-
-            padding:10px 18px;
-
-            font-size:26px;
-
-            border-radius:10px;
-
-            cursor:pointer;
-
-            display:block;
-
-            margin:0 auto 25px auto;
-        }
-
-        .side-menu a,
-        .dropdown-btn{
-
-            display:flex;
-
-            align-items:center;
-
-            justify-content:space-between;
-
-            padding:16px 10px;
-
-            color:white;
-
-            text-decoration:none;
-
-            font-weight:bold;
-
-            border-bottom:1px solid rgba(255,255,255,0.2);
-
-            font-size:15px;
-
-            background:none;
-
-            width:100%;
-
-            border-left:none;
-            border-right:none;
-            border-top:none;
-
-            cursor:pointer;
-        }
-
-        .side-menu a:hover,
-        .dropdown-btn:hover{
-
-            background:rgba(255,255,255,0.12);
-
-            border-radius:8px;
-        }
-
-        .dropdown-content{
-
-            display:none;
-
-            background:rgba(255,255,255,0.08);
-
-            border-radius:8px;
-
-            margin-bottom:8px;
-        }
-
-        .dropdown-content a{
-
-            display:block;
-
-            padding:12px 20px;
-
-            color:white;
-
-            text-decoration:none;
-
-            font-size:14px;
-        }
-
-        .dropdown-content a:hover{
-
-            background:#0055aa;
-        }
-
-        .main{
-
-            margin-left:250px;
-
-            width:calc(100% - 250px);
-
-            min-height:100vh;
-
-            position:relative;
-        }
-
-        .header{
-
-            background:linear-gradient(135deg,#002244,#004080);
-
-            color:white;
-
-            text-align:center;
-
-            padding:55px 220px;
-
-            position:relative;
-
-            min-height:260px;
-
-            box-shadow:0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .header h1{
-
-            font-size:42px;
-
-            margin-bottom:15px;
-        }
-
-        .slogan{
-
-            font-size:38px;
-
-            font-weight:bold;
-
-            color:#ffd700;
-
-            margin-bottom:15px;
-
-            letter-spacing:2px;
-
-            text-shadow:2px 2px 10px rgba(0,0,0,0.4);
-        }
-
-        .header p{
-
-            font-size:22px;
-        }
-
-        .dark-btn{
-
-            position:absolute;
-
-            right:35px;
-
-            top:35px;
-
-            padding:12px 20px;
-
-            border:none;
-
-            border-radius:8px;
-
-            background:white;
-
-            color:#003366;
-
-            font-weight:bold;
-
-            cursor:pointer;
-        }
-
-        .add-part-btn{
-
-            position:absolute;
-
-            right:35px;
-
-            top:95px;
-
-            padding:12px 20px;
-
-            border-radius:8px;
-
-            background:#0055aa;
-
-            color:white;
-
-            font-weight:bold;
-
-            text-decoration:none;
-        }
-
-        .logout-btn{
-
-            position:absolute;
-
-            right:35px;
-
-            top:150px;
-
-            padding:12px 20px;
-
-            border-radius:8px;
-
-            background:red;
-
-            color:white;
-
-            font-weight:bold;
-
-            text-decoration:none;
-        }
-
-        .container{
-
-            width:94%;
-
-            margin:30px auto 120px auto;
-        }
-
-        .search-box{
-
-            background:white;
-
-            padding:40px;
-
-            border-radius:18px;
-
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
-
-            text-align:center;
-
-            margin-bottom:25px;
-        }
-
-        .search-title{
-
-            font-size:30px;
-
-            color:#003366;
-
-            margin-bottom:25px;
-
-            font-weight:bold;
-        }
-
-        .search-form{
-
-            display:flex;
-
-            justify-content:center;
-
-            align-items:center;
-
-            gap:15px;
-        }
-
-        input{
-
-            width:45%;
-
-            padding:15px;
-
-            border:2px solid #d0d7e2;
-
-            border-radius:10px;
-
-            font-size:16px;
-        }
-
-        .search-btn{
-
-            padding:15px 28px;
-
-            background:linear-gradient(135deg,#003366,#0055aa);
-
-            color:white;
-
-            border:none;
-
-            border-radius:10px;
-
-            font-size:16px;
-
-            cursor:pointer;
-
-            font-weight:bold;
-        }
-
-        .table-container{
-
-            overflow-x:auto;
-
-            border-radius:15px;
-
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
-
-            background:white;
-        }
-
-        table{
-
-            width:100%;
-
-            border-collapse:collapse;
-
-            background:white;
-        }
-
-        th{
-
-            background:linear-gradient(135deg,#003366,#0055aa);
-
-            color:white;
-
-            padding:15px;
-
-            font-size:14px;
-        }
-
-        td{
-
-            padding:12px;
-
-            font-size:13px;
-
-            text-align:center;
-
-            border-bottom:1px solid #ddd;
-        }
-
-        tr:nth-child(even){
-
-            background:#f7f9fc;
-        }
-
-        tr:hover{
-
-            background:#eaf3ff;
-        }
-
-        .drawing-btn{
-
-            background:#13b84f;
-
-            color:white;
-
-            padding:8px 14px;
-
-            text-decoration:none;
-
-            border-radius:8px;
-
-            font-size:13px;
-
-            font-weight:bold;
-
-            display:inline-block;
-
-            margin-bottom:6px;
-        }
-
-        .edit-btn{
-
-            background:#ffaa00;
-
-            color:white;
-
-            padding:7px 14px;
-
-            text-decoration:none;
-
-            border-radius:6px;
-
-            display:inline-block;
-
-            margin-bottom:6px;
-        }
-
-        .delete-btn{
-
-            background:red;
-
-            color:white;
-
-            padding:7px 14px;
-
-            text-decoration:none;
-
-            border-radius:6px;
-
-            display:inline-block;
-        }
-
-        .footer{
-
-            position:fixed;
-
-            bottom:0;
-
-            left:250px;
-
-            width:calc(100% - 250px);
-
-            background:white;
-
-            text-align:center;
-
-            padding:15px 20px;
-
-            box-shadow:0 -2px 12px rgba(0,0,0,0.12);
-
-            z-index:999;
-        }
-
-        .footer h3{
-
-            color:#003366;
-
-            margin-bottom:10px;
-        }
-
-        .developer-name{
-
-            font-size:18px;
-
-            font-weight:bold;
-
-            color:#0055aa;
-        }
-
-    </style>
-
+.add-part-btn{
+    position:absolute;
+    right:35px;
+    top:95px;
+    padding:12px 20px;
+    border-radius:8px;
+    background:#0055aa;
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.logout-btn{
+    position:absolute;
+    right:35px;
+    top:150px;
+    padding:12px 20px;
+    border-radius:8px;
+    background:red;
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.container{
+    width:94%;
+    margin:30px auto 120px auto;
+}
+
+.search-box{
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.search-title{
+    font-size:30px;
+    color:#003366;
+    margin-bottom:25px;
+    font-weight:bold;
+}
+
+.search-form{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+}
+
+input{
+    width:45%;
+    padding:15px;
+    border:2px solid #d0d7e2;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.search-btn{
+    padding:15px 28px;
+    background:linear-gradient(135deg,#003366,#0055aa);
+    color:white;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.table-container{
+    max-width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    background:white;
+    margin-top:25px;
+    margin-bottom:30px;
+}
+
+.table-container::-webkit-scrollbar{
+    height:14px;
+}
+
+.table-container::-webkit-scrollbar-track{
+    background:#d9d9d9;
+    border-radius:10px;
+}
+
+.table-container::-webkit-scrollbar-thumb{
+    background:#003366;
+    border-radius:10px;
+}
+
+table{
+    min-width:1100px;
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:linear-gradient(135deg,#003366,#0055aa);
+    color:white;
+    padding:15px;
+    font-size:14px;
+}
+
+td{
+    padding:12px;
+    font-size:13px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tr:nth-child(even){
+    background:#f7f9fc;
+}
+
+tr:hover{
+    background:#eaf3ff;
+}
+
+.drawing-btn{
+    background:#13b84f;
+    color:white;
+    padding:8px 14px;
+    text-decoration:none;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:bold;
+    display:inline-block;
+    margin-bottom:6px;
+}
+
+.edit-btn{
+    background:#ffaa00;
+    color:white;
+    padding:7px 14px;
+    text-decoration:none;
+    border-radius:6px;
+    display:inline-block;
+    margin-bottom:6px;
+}
+
+.delete-btn{
+    background:red;
+    color:white;
+    padding:7px 14px;
+    text-decoration:none;
+    border-radius:6px;
+    display:inline-block;
+}
+
+.hero-banner{
+    margin:30px auto;
+    width:100%;
+    background:linear-gradient(135deg,#002244,#0055aa);
+    color:white;
+    border-radius:22px;
+    padding:35px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+}
+
+.hero-title{
+    font-size:34px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.hero-text{
+    font-size:18px;
+    margin-bottom:25px;
+}
+
+.dashboard-cards{
+    display:flex;
+    gap:18px;
+    overflow:hidden;
+}
+
+.dash-card{
+    min-width:220px;
+    background:white;
+    color:#003366;
+    padding:20px;
+    border-radius:16px;
+    font-weight:bold;
+    animation:slideCards 14s linear infinite;
+}
+
+@keyframes slideCards{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-260px);}
+}
+
+.footer{
+    position:fixed;
+    bottom:0;
+    left:250px;
+    width:calc(100% - 250px);
+    background:white;
+    text-align:center;
+    padding:15px 20px;
+    box-shadow:0 -2px 12px rgba(0,0,0,0.12);
+    z-index:999;
+}
+
+.footer h3{
+    color:#003366;
+    margin-bottom:10px;
+}
+
+.developer-name{
+    font-size:18px;
+    font-weight:bold;
+    color:#0055aa;
+}
+</style>
 </head>
 
 <body>
 
 <div class="layout">
 
-    <div class="sidebar">
+<div class="sidebar">
 
-        <img class="sidebar-logo"
-             src="{{ url_for('static', filename='logo.png') }}"
-             alt="Company Logo">
+    <img class="sidebar-logo" src="{{ url_for('static', filename='logo.png') }}" alt="Company Logo">
 
-        <button class="menu-btn">
+    <button class="menu-btn">☰</button>
 
-            ☰
+    <div class="side-menu">
 
-        </button>
+        <a href="/daily_rejection">
+            <span>Daily Rejection Trend</span>
+            <span>›</span>
+        </a>
 
-        <div class="side-menu">
+        <a href="/organization">
+            <span>Organization Chart</span>
+            <span>›</span>
+        </a>
 
-            <a href="/daily_rejection">
-
-                <span>
-
-                    Daily Rejection Trend
-
-                </span>
-
-                <span>›</span>
-
-            </a>
-
-            <a href="/organization">
-
-                <span>
-
-                    Organization Chart
-
-                </span>
-
-                <span>›</span>
-
-            </a>
-
-            <a href="#">
-
-                <span>
-
-                    Finish Grinding
-
-                </span>
-
-                <span>›</span>
-
-            </a>
-
-            <a href="#">
-
-                <span>
-
-                    Plating
-
-                </span>
-
-                <span>›</span>
-
-            </a>
-
-            <div class="dropdown">
-
-                <button class="dropdown-btn"
-                        onclick="toggleDropdown()">
-
-                    <span>
-
-                         Post Chrome Grinding
-
-                    </span>
-
-                    <span>▼</span>
-
-                </button>
-
-                <div class="dropdown-content"
-                     id="postChromeDropdown">
-
-                    <a href="/static/docs/quality_policy.jpg"
-                       target="_blank">
-
-                        Quality Policy
-
-                    </a>
-
-                    <a href="/static/docs/control_plan.jpg"
-                       target="_blank">
-
-                        Control Plan
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <a href="#">
-
-                <span>
-
-                    Final Dispatch
-
-                </span>
-
-                <span>›</span>
-
-            </a>
-
-            <a href="#">
-
-                <span>
-
-                    PDI
-
-                </span>
-
-                <span>›</span>
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <div class="main">
-
-        <div class="header">
-
-            <button class="dark-btn"
-                    onclick="toggleDarkMode()">
-
-                🌙 Dark Mode
-
+        <div class="dropdown">
+            <button class="dropdown-btn" onclick="toggleFGDropdown()">
+                <span>Finish Grinding</span>
+                <span>▼</span>
             </button>
 
-            {% if logged_in %}
-
-            <a href="/add"
-               class="add-part-btn">
-
-               + Add / Edit / Delete
-
-            </a>
-
-            <a href="/logout"
-               class="logout-btn">
-
-               Logout
-
-            </a>
-
-            {% else %}
-
-            <a href="/login"
-               class="add-part-btn">
-
-               👤 Admin Login
-
-            </a>
-
-            {% endif %}
-
-            <h1>
-
-                Megacoat Surface Treatments LLP
-
-            </h1>
-
-            <h2 class="slogan">
-
-                Beyond Known Frontiers
-
-            </h2>
-
-            <p>
-
-                Piston Rod Search Portal
-
-            </p>
-
+            <div class="dropdown-content" id="fgDropdown">
+                <a href="/finish_grinding">FG Search</a>
+            </div>
         </div>
 
-        <div class="container">
+        <a href="#">
+            <span>Plating</span>
+            <span>›</span>
+        </a>
 
-            <div class="search-box">
+        <a href="#">
+            <span>Post Chrome Grinding</span>
+            <span>›</span>
+        </a>
 
-                <div class="search-title">
+        <a href="#">
+            <span>Final Dispatch</span>
+            <span>›</span>
+        </a>
 
-                    🔍 Search Piston Rod Details
-
-                </div>
-
-                <form method="POST"
-                      class="search-form">
-
-                    <input type="text"
-                           name="search"
-                           placeholder="Enter Part No / Application / Plant"
-                           required>
-
-                    <button type="submit"
-                            class="search-btn">
-
-                        Search
-
-                    </button>
-
-                </form>
-
-            </div>
-
-            {% if results %}
-
-            <div class="table-container">
-
-                <table>
-
-                    <tr>
-
-                        <th>Sr No</th>
-                        <th>Part No</th>
-                        <th>Rev Date</th>
-                        <th>Application</th>
-                        <th>Total Length</th>
-                        <th>Plating Length</th>
-                        <th>Chrome Before</th>
-                        <th>Chrome After</th>
-                        <th>Nickel</th>
-                        <th>Piston End</th>
-                        <th>Plant</th>
-                        <th>Identification</th>
-                        <th>Actions</th>
-
-                    </tr>
-
-                    {% for row in results %}
-
-                    <tr>
-
-                        <td>{{ row[0] }}</td>
-                        <td><b>{{ row[1] }}</b></td>
-                        <td>{{ row[2] }}</td>
-                        <td>{{ row[3] }}</td>
-                        <td>{{ row[4] }}</td>
-                        <td>{{ row[5] }}</td>
-                        <td>{{ row[6] }}</td>
-                        <td>{{ row[7] }}</td>
-                        <td>{{ row[8] }}</td>
-                        <td>{{ row[9] }}</td>
-                        <td>{{ row[10] }}</td>
-                        <td>{{ row[11] }}</td>
-
-                        <td>
-
-                            <a class="drawing-btn"
-                               href="/static/drawings/{{ row[1] }}.pdf"
-                               target="_blank">
-
-                                View Drawing
-
-                            </a>
-
-                            {% if logged_in %}
-
-                            <br>
-
-                            <a class="edit-btn"
-                               href="/edit/{{ row[1] }}">
-
-                                Edit
-
-                            </a>
-
-                            <br>
-
-                            <a class="delete-btn"
-                               href="/delete/{{ row[1] }}">
-
-                                Delete
-
-                            </a>
-
-                            {% endif %}
-
-                        </td>
-
-                    </tr>
-
-                    {% endfor %}
-
-                </table>
-
-            </div>
-
-            {% endif %}
-
-        </div>
-
-        <div class="footer">
-
-            <h3>
-
-                Developed for Megacoat Surface Treatments LLP
-
-            </h3>
-
-            <div class="developer-name">
-
-                Developed By - Mr. Suyash Thorat | Quality Engineer
-
-            </div>
-
-        </div>
+        <a href="#">
+            <span>PDI</span>
+            <span>›</span>
+        </a>
 
     </div>
 
 </div>
 
+<div class="main">
+
+    <div class="header">
+
+        <button class="dark-btn" onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+
+        {% if logged_in %}
+
+        <a href="/add" class="add-part-btn">
+            + Add / Edit / Delete
+        </a>
+
+        <a href="/logout" class="logout-btn">
+            Logout
+        </a>
+
+        {% else %}
+
+        <a href="/login" class="add-part-btn">
+            👤 Admin Login
+        </a>
+
+        {% endif %}
+
+        <h1>Megacoat Surface Treatments LLP</h1>
+        <h2 class="slogan">Beyond Known Frontiers</h2>
+        <p>Piston Rod Search Portal</p>
+
+    </div>
+
+    <div class="container">
+
+        <div class="search-box">
+
+            <div class="search-title">
+                🔍 Search Piston Rod Details
+            </div>
+
+            <form method="POST" class="search-form">
+
+                <input type="text"
+                       name="search"
+                       placeholder="Enter Part No / Application / Plant"
+                       required>
+
+                <button type="submit" class="search-btn">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+        {% if results %}
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>Sr No</th>
+                    <th>Part No</th>
+                    <th>Rev Date</th>
+                    <th>Application</th>
+                    <th>Total Length</th>
+                    <th>Plating Length</th>
+                    <th>Chrome Before</th>
+                    <th>Chrome After</th>
+                    <th>Nickel</th>
+                    <th>Piston End</th>
+                    <th>Plant</th>
+                    <th>Identification</th>
+                    <th>Actions</th>
+                </tr>
+
+                {% for row in results %}
+
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td><b>{{ row[1] }}</b></td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[4] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>{{ row[8] }}</td>
+                    <td>{{ row[9] }}</td>
+                    <td>{{ row[10] }}</td>
+                    <td>{{ row[11] }}</td>
+
+                    <td>
+                        <a class="drawing-btn"
+                           href="/static/drawings/{{ row[1] }}.pdf"
+                           target="_blank">
+                            View Drawing
+                        </a>
+
+                        {% if logged_in %}
+
+                        <br>
+
+                        <a class="edit-btn" href="/edit/{{ row[1] }}">
+                            Edit
+                        </a>
+
+                        <br>
+
+                        <a class="delete-btn" href="/delete/{{ row[1] }}">
+                            Delete
+                        </a>
+
+                        {% endif %}
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        {% endif %}
+
+        <div class="hero-banner">
+
+            <div class="hero-title">
+                Smart Manufacturing Quality Portal
+            </div>
+
+            <div class="hero-text">
+                Digital system for piston rod search, drawing access, quality documents and rejection analysis.
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="dash-card">🔍 Fast Part Search</div>
+                <div class="dash-card">📄 Drawing PDF Viewer</div>
+                <div class="dash-card">📊 Rejection Analytics</div>
+                <div class="dash-card">⚡ Smart Manufacturing</div>
+                <div class="dash-card">🌙 Dark Mode Support</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <h3>Developed for Megacoat Surface Treatments LLP</h3>
+        <div class="developer-name">
+            Developed By - Mr. Suyash Thorat | Quality Engineer
+        </div>
+    </div>
+
+</div>
+
+</div>
+
 <script>
-
 function toggleDarkMode(){
-
-    document.body.classList.toggle(
-        "dark-mode"
-    );
-
+    document.body.classList.toggle("dark-mode");
 }
 
-function toggleDropdown(){
-
-    var dropdown = document.getElementById(
-        "postChromeDropdown"
-    );
+function toggleFGDropdown(){
+    var dropdown = document.getElementById("fgDropdown");
 
     if(dropdown.style.display === "block"){
-
         dropdown.style.display = "none";
-
     }else{
-
         dropdown.style.display = "block";
-
     }
-
 }
-
 </script>
 
 </body>
-
 </html>
