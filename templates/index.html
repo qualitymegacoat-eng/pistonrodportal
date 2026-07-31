@@ -273,16 +273,35 @@ tr:hover{
     background:#eaf3ff;
 }
 
-.drawing-btn{
-    background:#13b84f;
+.doc-col{
+    width:130px;
+    min-width:130px;
+    text-align:center;
+}
+
+.doc-cell{
+    width:130px;
+    min-width:130px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+.drawing-btn,
+.cr-btn{
+     background:#ff9800;
     color:white;
-    padding:8px 14px;
-    text-decoration:none;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:bold;
     display:inline-block;
-    margin-bottom:6px;
+    width:100px;
+    padding:10px 0;
+    text-align:center;
+}
+.cr-btn{
+    background:#ff9800;
+    color:white;
+}
+
+.cr-btn:hover{
+    background:#e68900;
 }
 
 .edit-btn{
@@ -504,7 +523,8 @@ tr:hover{
                     <th>Piston End</th>
                     <th>Plant</th>
                     <th>Identification</th>
-                    <th>Drawing</th>
+                    <th class="doc-col">Drawing</th>
+                    <th class="doc-col">CR</th>
                 </tr>
 
                 {% for row in results %}
@@ -521,31 +541,45 @@ tr:hover{
                     <td>{{ row[8] }}</td>
                     <td>{{ row[9] }}</td>
                     <td>{{ row[10] }}</td>
-                    <td>{{ row[11] }}</td>
+<td>{{ row[11] }}</td>
 
-                    <td>
-                        <a class="drawing-btn"
-                           href="/static/drawings/{{ row[1] }}.pdf"
-                           target="_blank">
-                            View Drawing
-                        </a>
+<!-- Drawing -->
+<td class="doc-cell">
 
-                        {% if logged_in %}
+    <a class="drawing-btn"
+       href="/static/drawings/{{ row[1] }}.pdf"
+       target="_blank">
+        View Drawing
+    </a>
 
-                        <br>
+    {% if logged_in %}
 
-                        <a class="edit-btn" href="/edit/{{ row[1] }}">
-                            Edit
-                        </a>
+    <br><br>
 
-                        <br>
+    <a class="edit-btn" href="/edit/{{ row[1] }}">
+        Edit
+    </a>
 
-                        <a class="delete-btn" href="/delete/{{ row[1] }}">
-                            Delete
-                        </a>
+    <br><br>
 
-                        {% endif %}
-                    </td>
+    <a class="delete-btn" href="/delete/{{ row[1] }}">
+        Delete
+    </a>
+
+    {% endif %}
+
+</td>
+
+<!-- CR -->
+<td class="doc-cell">
+
+    <a class="cr-btn"
+       href="/static/cr/{{ row[1] }}.pdf"
+       target="_blank">
+        View CR
+    </a>
+
+</td>
                 </tr>
 
                 {% endfor %}
